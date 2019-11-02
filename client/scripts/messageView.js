@@ -2,7 +2,7 @@ var MessageView = {
 
   render: _.template(
     '<div class="chat">' +
-        '<div class="username">' + '<%- username %>:' + '</div>' +
+        '<a class="username" href=#>' + '<%- username %>:' + '</a>' +
         '<div>' + '<%- text %>' + '</div>' + '</div>')
 
 };

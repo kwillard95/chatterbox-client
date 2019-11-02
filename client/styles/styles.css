@@ -88,6 +88,10 @@ form input[type=text] {
     background-color: #0090da;
 }
 
+.username {
+    text-decoration: initial;
+}
+
 form#add {
     display: inline-block;
     padding-left: 50px;

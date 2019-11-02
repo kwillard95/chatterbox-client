@@ -10,12 +10,10 @@ var App = {
     App.startSpinner();
     App.fetch(App.stopSpinner);
 
+    // Fetch initial batch of messages
     FormView.initialize();
     RoomsView.initialize();
     MessagesView.initialize();
-
-    // Fetch initial batch of messages
-
   },
 
 
@@ -35,7 +33,6 @@ var App = {
         if (!Messages.allIds.includes(data.results[i].objectId)) {
           Messages.allIds.push(data.results[i].objectId);
           Messages.allMessages.push(data.results[i]);
-          // var html = pass into Message.render
           var html = MessageView.render(data.results[i]);
           // append to chats
           $('#chats').append(html);
