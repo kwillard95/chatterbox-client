@@ -88,3 +88,11 @@ form input[type=text] {
     background-color: #0090da;
 }
 
+form#add {
+    display: inline-block;
+    padding-left: 50px;
+}
+
+#new-room {
+    width: 50%;
+}

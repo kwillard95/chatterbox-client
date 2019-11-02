@@ -1,13 +1,14 @@
 var Messages = {
-  allMessages: []
+  allMessages: [],
+  allIds: []
 };
 
 //message class
 
-var NewMessage = function(username, text) {
+var NewMessage = function(username, text, roomname) {
   this.username = username;
   this.text = text;
-  // this.roomname = roomname;
+  this.roomname = roomname;
 
   //Parse.create(text,tbd,tbd)
   //Message.allMessages.push(this)

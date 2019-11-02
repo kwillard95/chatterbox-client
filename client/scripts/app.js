@@ -6,7 +6,6 @@ var App = {
 
   initialize: function() {
     App.username = window.location.search.substr(10);
-    step();
 
     App.startSpinner();
     App.fetch(App.stopSpinner);
@@ -33,23 +32,26 @@ var App = {
         }
 
         // add messages
-        Messages.allMessages.push(data.results[i]);
+        if (!Messages.allIds.includes(data.results[i].objectId)) {
+          Messages.allIds.push(data.results[i].objectId);
+          Messages.allMessages.push(data.results[i]);
+          // var html = pass into Message.render
+          var html = MessageView.render(data.results[i]);
+          // append to chats
+          $('#chats').append(html);
+        } else {
+          break;
+        }
 
         // Add new rooms
         var room = data.results[i].roomname;
-        // if ((!Rooms.list.includes(room)) && (room !== undefined || room !== null || room !== '')) {
-        //   Rooms.list.push(room);
-        // }
 
-        if ((!Rooms.list.includes(room)) && (typeof room === 'string' && room.length > 0)) {
-          Rooms.list.push(room);
+        if ((!Rooms.list.hasOwnProperty(room)) && (typeof room === 'string' && room.length > 0)) {
+          Rooms.list[room] = [];
+        } else if (Rooms.list.hasOwnProperty(room)) {
+          Rooms.list[room].push(data.results[i]);
         }
 
-        // var html = pass into Message.render
-        var html = MessageView.render(data.results[i]);
-
-        // append to chats
-        $('#chats').append(html);
       }
 
     });
@@ -67,7 +69,3 @@ var App = {
   }
 };
 
-
-var step = function() {
-  setTimeout(App.initialize, 10000);
-};

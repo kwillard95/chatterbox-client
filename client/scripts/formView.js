@@ -13,11 +13,11 @@ var FormView = {
     var username = App.username;
     var room = $('#rooms select').val();
 
-    var msgObj = new NewMessage(username, text);
+    var msgObj = new NewMessage(username, text, room);
     Parse.create(msgObj);
-    MessagesView.render(msgObj);
 
     console.log('click!');
+    $('form #message').val('');
   },
 
   setStatus: function(active) {

@@ -4,22 +4,41 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
+    RoomsView.$select.on('change', RoomsView.handleSubmit);
     // loop through Rooms.list
-    for (var i = 0; i < Rooms.list.length; i++) {
-      var room = Rooms.list[i];
-      if ($(`#rooms select option[value='${room}']`).length === 0) {
-        this.renderRoom(Rooms.list[i]);
+    var rooms = Object.keys(Rooms.list);
+    for (var i = 0; i < rooms.length; i++) {
+      if ($(`#rooms select option[value='${rooms[i]}']`).length === 0) {
+        this.renderRoom(rooms[i]);
       }
     }
+    setTimeout(() => App.fetch(this.initialize.bind(this)), 3000);
   },
 
   renderRoom: function(room) {
     // append to $select
-    this.$select.append(`<option value= ${room}>${room}</option>`);
-  }
+    this.$select.append(`<option value='${room}'>${room}</option>`);
+  },
 
+  handleSubmit: function(event) {
+    // Stop the browser from submitting the form
+    event.preventDefault();
+    $('#chats').empty();
+
+    var room = $('#rooms select').val();
+    //clear chats
+    var array = Rooms.list[room];
+    for (var i = 0; i < array.length; i++) {
+      var html = MessageView.render(array[i]);
+      // append to chats
+      $('#chats').append(html);
+    }
+    //take the room value and loop through corresponding property in roomsList
+    //call render
+
+  },
 };
 
-//if option list does not have an option value of 'room' then render it
+
 
 
