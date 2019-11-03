@@ -10,10 +10,10 @@ var RoomsView = {
     var rooms = Object.keys(Rooms.list);
     for (var i = 0; i < rooms.length; i++) {
       if ($(`#rooms select option[value='${rooms[i]}']`).length === 0) {
-        this.renderRoom(rooms[i]);
+        RoomsView.renderRoom(rooms[i]);
       }
     }
-    setTimeout(() => App.fetch(this.initialize.bind(this)), 3000);
+    setTimeout(() => App.fetch(RoomsView.initialize), 3000);
   },
 
   renderRoom: function(room) {

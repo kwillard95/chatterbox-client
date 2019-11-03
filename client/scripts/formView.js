@@ -3,7 +3,6 @@ var FormView = {
   $form: $('form .submit'),
 
   initialize: function() {
-   
     FormView.$form.on('click', FormView.handleSubmit);
   },
 

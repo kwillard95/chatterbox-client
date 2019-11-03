@@ -92,6 +92,10 @@ form input[type=text] {
     text-decoration: initial;
 }
 
+.username:hover {
+    cursor: pointer;
+}
+
 form#add {
     display: inline-block;
     padding-left: 50px;

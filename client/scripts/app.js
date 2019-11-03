@@ -14,6 +14,7 @@ var App = {
     FormView.initialize();
     RoomsView.initialize();
     MessagesView.initialize();
+    Friends.initialize();
   },
 
 
@@ -33,9 +34,6 @@ var App = {
         if (!Messages.allIds.includes(data.results[i].objectId)) {
           Messages.allIds.push(data.results[i].objectId);
           Messages.allMessages.push(data.results[i]);
-          var html = MessageView.render(data.results[i]);
-          // append to chats
-          $('#chats').append(html);
         } else {
           break;
         }
@@ -48,7 +46,6 @@ var App = {
         } else if (Rooms.list.hasOwnProperty(room)) {
           Rooms.list[room].push(data.results[i]);
         }
-
       }
 
     });
